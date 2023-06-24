@@ -1,24 +1,14 @@
-import { useEffect } from "react";
-import User from './User';
+import User from "./User";
 import UserClass from "./UserClass";
+import useAboutUser from "../utils/useAboutUser";
 
 const About = () => {
-
-  useEffect(() => {
-    let data = setInterval(() => {
-      console.log("interval");
-    }, 1000);
-
-    return () => {
-      clearInterval(data);
-      console.log("useEffect unMounted");
-    };
-  }, []);
+  const userData =  useAboutUser();
 
   return (
     <div>
-      <User />
-      <UserClass name={"pk"} location={"elr"} />
+      {userData==null ? <User data={userData} /> : 'loading user wait'}
+      
     </div>
   );
 };
