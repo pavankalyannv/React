@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -8,6 +8,7 @@ import Home from "./components/Home";
 import Contact from "./components/Contact";
 import About from "./components/About";
 import Cart from "./components/Cart";
+// import Grocery from "./components/Grocery";
 
 const AppLayout = () => {
   return (
@@ -17,6 +18,8 @@ const AppLayout = () => {
     </div>
   );
 };
+
+const Grocery = lazy(() => import("./components/Grocery"));
 
 const router = createBrowserRouter([
   {
@@ -38,6 +41,15 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+      },
+      // We are using Lazy loading | Chunking the .js file to imporve the perfomance of the app.
+      {
+        path: "/grocery",
+        element: (
+          <Suspense fallback={<h1> loading.... </h1>}>
+            <Grocery />
+          </Suspense>
+        ),
       },
       {
         path: "/cart",

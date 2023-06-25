@@ -3,14 +3,9 @@ import UserClass from "./UserClass";
 import useAboutUser from "../utils/useAboutUser";
 
 const About = () => {
-  const userData =  useAboutUser();
+  const userData = useAboutUser();
 
-  return (
-    <div>
-      {userData==null ? <User data={userData} /> : 'loading user wait'}
-      
-    </div>
-  );
+  return <div>{userData ? <User data={userData} /> : "loading user wait"}</div>;
 };
 
 export default About;
