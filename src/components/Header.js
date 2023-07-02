@@ -1,9 +1,17 @@
 import { IMG_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineCheck from "../utils/useOnlineCheck";
+import { useSelector } from "react-redux";
+import store from "../utils/Store";
 
 const Header = () => {
   const onlineStatus = useOnlineCheck();
+
+  //  by selecting particular slice will increase the performance of the app
+  const cartItems = useSelector((store) => store.cart.items);
+
+  // The component  will rerender everytime when the store updated, which will drastically decrease the performace
+  //  const store = useSelector(store=>store)
 
   return (
     <div className="header">
@@ -34,7 +42,7 @@ const Header = () => {
           </li>
           <li>
             {" "}
-            <Link to="/cart">Cart</Link>{" "}
+            <Link to="/cart">Cart - {cartItems.length} Items </Link>{" "}
           </li>
         </ul>
       </div>

@@ -8,14 +8,15 @@ import Home from "./components/Home";
 import Contact from "./components/Contact";
 import About from "./components/About";
 import Cart from "./components/Cart";
-// import Grocery from "./components/Grocery";
+import {Provider} from "react-redux";
+import store from "./utils/Store";
 
 const AppLayout = () => {
   return (
-    <div className="app">
+    <Provider store={store}>
       <Header />
       <Outlet />
-    </div>
+    </Provider>
   );
 };
 
